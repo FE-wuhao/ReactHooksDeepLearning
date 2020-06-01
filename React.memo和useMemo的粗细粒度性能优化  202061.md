@@ -27,6 +27,22 @@
 4. 用法
 
    使用React.memo包裹需要控制渲染的组件（一般是子组件），对于只需要针对某特定props变化才进行重渲染的，添加第二参数，进行前后判断，返回值以控制重渲染
+   
+   ```javascript
+   function MyComponent(props) {
+     /* render using props */
+   }
+   function areEqual(prevProps, nextProps) {
+     /*
+     return true if passing nextProps to render would return
+     the same result as passing prevProps to render,
+     otherwise return false
+     */
+   }
+   export default React.memo(MyComponent, areEqual);
+   ```
+   
+   
 
 ##### 细粒度的性能优化:useMemo（变量级）
 
@@ -41,4 +57,10 @@
 3. 用法
 
    当需要将某个props经过一段运算，获取其运算结果时，将这段运算的过程包裹到useMemo中，并将用到的props添加到依赖数组中，这样就可以实现计算结果的缓存了，只要依赖的props不变化，那么调用该useMemo返回的结果时永远使用缓存的运算结果
+   
+   ```javascript
+   const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+   ```
+   
+   
 
