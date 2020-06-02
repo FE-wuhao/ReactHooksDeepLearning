@@ -12,32 +12,34 @@
 
    **机制**：组件预设了懒加载模式，所以同步渲染到该懒加载的组件时需要向服务器请求下载，此时react会抛出异常，同时文件下载也会抛出promise，于是异常和promise一直向上传递，直到传递到suspense，捕获异常与promise，然后等待promise resolve，渲染组件。
    
-   ```javascript
-   const Foo = React.lazy(() => import('../components/Foo'));
-   
-   export default class LazyPage extends Component {
-       render() {
-           return (
-               <div>
-                   <Suspense fallback={<div>loading...</div>}>
-                       <Foo/>
-                   </Suspense>
-               </div>
-           )
-       }
+
+```javascript
+const Foo = React.lazy(() => import('../components/Foo'));
+
+export default class LazyPage extends Component {
+    render() {
+        return (
+            <div>
+                <Suspense fallback={<div>loading...</div>}>
+                    <Foo/>
+                </Suspense>
+            </div>
+        )
+    }
 }
-   ```
+```
 
-3. suspense的进阶用法：fetch
 
-   [suspense做fetch资源1](https://segmentfault.com/a/1190000017483690)
 
-   [suspense做fetch资源2](https://blog.csdn.net/wangweiren_get/article/details/86624820)
+## suspense的进阶用法：fetch
 
-   
-   
-   原理上依然是通过suspense捕获promise，等待resolve再执行render
-   
+[suspense做fetch资源1](https://segmentfault.com/a/1190000017483690)
+
+[suspense做fetch资源2](https://blog.csdn.net/wangweiren_get/article/details/86624820)
+
+
+
+原理上依然是通过suspense捕获promise，等待resolve再执行render
 
 
 
