@@ -34,6 +34,12 @@
 
    [suspense做fetch资源2](https://blog.csdn.net/wangweiren_get/article/details/86624820)
 
+   
+   
+   原理上依然是通过suspense捕获promise，等待resolve再执行render
+   
+   
+   
    ```javascript
    import React, { Suspense } from "react";
    import ReactDOM from "react-dom";
@@ -78,12 +84,12 @@
    
    const rootElement = document.getElementById(
      "root"
-   );
+);
    ReactDOM.createRoot(rootElement).render(
      <ProfilePage />
    );
    
    ```
-
+   
    
 
